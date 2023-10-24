@@ -2,6 +2,7 @@ package com.cmed.characters.ViewModel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.paging.cachedIn
 import com.cmed.characters.Services.Repository.HarryPotterRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -18,9 +19,13 @@ class HarrayPotterViewModel @Inject constructor (private val harryPotterReposito
         viewModelScope.launch {
             harryPotterRepository.getHPCharacter()
 
-            println("janina: "+harryPotterRepository.getHPCharacter().toString())
+
         }
     }
+
+
+      val list =  harryPotterRepository.getHPages().cachedIn(viewModelScope)
+
 
 
 }

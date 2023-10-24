@@ -1,15 +1,17 @@
 package com.cmed.characters.Services.Repository
 
 import androidx.lifecycle.MutableLiveData
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingSource
+import androidx.paging.liveData
 import com.cmed.characters.Services.Model.responseData
+import com.cmed.characters.Services.Paging.HPagingSource
 import com.cmed.characters.Services.api.HarryPotterApi
 import com.cmed.characters.Utils.NetworkResult
 import okio.IOException
-import okio.Timeout
 import org.json.JSONObject
-import retrofit2.Call
 import retrofit2.HttpException
-import java.net.HttpURLConnection
 import java.util.concurrent.TimeoutException
 import javax.inject.Inject
 
@@ -45,5 +47,11 @@ class HarryPotterRepository @Inject constructor(private val harryPotterApi: Harr
             _potterLiveData.postValue(NetworkResult.Error("Unexpected response"))
         }
     }
+
+    //paging
+    fun getHPages() = Pager(
+        config = PagingConfig(pageSize = 10, maxSize = 100),
+        pagingSourceFactory = {HPagingSource(harryPotterApi)}
+    ).liveData
 
 }

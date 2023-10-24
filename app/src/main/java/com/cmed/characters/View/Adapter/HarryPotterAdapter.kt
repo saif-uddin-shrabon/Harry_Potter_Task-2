@@ -3,6 +3,7 @@ package com.cmed.characters.View.Adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -13,7 +14,7 @@ import com.cmed.characters.Services.Model.responseDataItem
 import com.cmed.characters.databinding.ListItemBinding
 import com.squareup.picasso.Picasso
 
-class HarryPotterAdapter(private val onHPClicked: (responseDataItem) -> Unit) : ListAdapter<responseDataItem, HarryPotterAdapter.HPViewHolder>(ComparatorDiffUtil()){
+class HarryPotterAdapter(private val onHPClicked: (responseDataItem) -> Unit) : PagingDataAdapter<responseDataItem, HarryPotterAdapter.HPViewHolder>(ComparatorDiffUtil()){
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
@@ -24,9 +25,14 @@ class HarryPotterAdapter(private val onHPClicked: (responseDataItem) -> Unit) : 
 
     override fun onBindViewHolder(holder: HPViewHolder, position: Int) {
         val hp = getItem(position)
-        holder.bind(hp)
+        if(hp != null){
+            holder.bind(hp)
+        }
+
 
     }
+
+
 
     inner class HPViewHolder(private val binding: ListItemBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(hp: responseDataItem){
