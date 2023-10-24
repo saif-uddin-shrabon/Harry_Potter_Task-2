@@ -76,20 +76,27 @@ class HarryPotterDetails : Fragment() {
             HPDetails = Gson().fromJson(jsonDetails,responseDataItem::class.java)
 
             HPDetails.let {
-                if(it?.image != null) {
+
                     binding?.profileImage?.let { it1 ->
                         Glide.with(this)
                             .load(it?.image)
                             .diskCacheStrategy(DiskCacheStrategy.ALL)
+                            .placeholder(R.drawable.profile)
+                            .error(R.drawable.profile)
                             .into(it1)
                     }
-                }else
-                {
-                    binding?.imageView?.setImageResource(R.drawable.profile)
-                }
+
                 binding?.textView3?.text = it?.name ?: ""
                 binding?.actorname?.text = it?.actor ?: ""
-                binding?.altrrName?.text = it?.alternate_names?.get(0) ?: ""
+//                    binding?.altrrName?.text = it?.alternate_names?.get(0) ?: ""
+                val alternateNames = it?.alternate_names
+
+                if (alternateNames != null && alternateNames.isNotEmpty()) {
+                    binding?.altrrName?.text = alternateNames[0]
+                } else {
+                    binding?.altrrName?.text = ""
+                }
+
                 binding?.gender?.text = it?.gender ?: ""
                 binding?.dob?.text = it?.dateOfBirth ?: ""
                 binding?.yob?.text = it?.yearOfBirth.toString() ?: ""

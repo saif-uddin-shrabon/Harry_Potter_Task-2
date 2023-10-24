@@ -8,8 +8,10 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.cmed.characters.R
 import com.cmed.characters.Services.Model.responseDataItem
 import com.cmed.characters.databinding.ListItemBinding
+import com.squareup.picasso.Picasso
 
 class HarryPotterAdapter(private val onHPClicked: (responseDataItem) -> Unit) : ListAdapter<responseDataItem, HarryPotterAdapter.HPViewHolder>(ComparatorDiffUtil()){
     override fun onCreateViewHolder(
@@ -34,7 +36,12 @@ class HarryPotterAdapter(private val onHPClicked: (responseDataItem) -> Unit) : 
             Glide.with(itemView)
                 .load(hp.image)
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .placeholder(R.drawable.profile)
+                .error(R.drawable.profile)
                 .into(binding.profilePic)
+
+
+        //    Picasso.get().load(hp.image).into(binding.profilePic)
 
 
             binding.root.setOnClickListener {

@@ -92,8 +92,17 @@ dependencies {
 
     //glide
     implementation ("com.github.bumptech.glide:glide:4.16.0")
+    annotationProcessor ("com.github.bumptech.glide:compiler:4.12.0")
     // circle
     implementation ("de.hdodenhof:circleimageview:3.1.0")
+
+    //picaso
+    implementation ("com.squareup.picasso:picasso:2.8")
+
+    //paging
+    val paging_version = "3.2.1"
+
+    implementation("androidx.paging:paging-runtime:$paging_version")
 }
 kapt {
     correctErrorTypes = true
