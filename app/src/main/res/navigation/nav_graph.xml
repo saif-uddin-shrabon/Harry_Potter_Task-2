@@ -9,5 +9,21 @@
         android:id="@+id/charactersHome"
         android:name="com.cmed.characters.View.Activity.HarryPotterHome"
         android:label="fragment_characters_home"
-        tools:layout="@layout/fragment_harry_potter_home" />
+        tools:layout="@layout/fragment_harry_potter_home" >
+        <action
+            android:id="@+id/action_charactersHome_to_harryPotterDetails"
+            app:destination="@id/harryPotterDetails"
+            app:popUpToInclusive="false" />
+    </fragment>
+    <fragment
+        android:id="@+id/harryPotterDetails"
+       android:name="com.cmed.characters.HarryPotterDetails"
+        android:label="fragment_harry_potter_details"
+        tools:layout="@layout/fragment_harry_potter_details" >
+        <action
+            android:id="@+id/action_harryPotterDetails_to_charactersHome"
+            app:destination="@id/charactersHome"
+            app:popUpTo="@id/harryPotterDetails"
+            app:popUpToInclusive="true" />
+    </fragment>
 </navigation>

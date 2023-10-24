@@ -6,10 +6,12 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.cmed.characters.Services.Model.responseDataItem
 import com.cmed.characters.databinding.ListItemBinding
 
-class HarryPotterAdapter() : ListAdapter<responseDataItem, HarryPotterAdapter.HPViewHolder>(ComparatorDiffUtil()){
+class HarryPotterAdapter(private val onHPClicked: (responseDataItem) -> Unit) : ListAdapter<responseDataItem, HarryPotterAdapter.HPViewHolder>(ComparatorDiffUtil()){
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
@@ -26,9 +28,18 @@ class HarryPotterAdapter() : ListAdapter<responseDataItem, HarryPotterAdapter.HP
 
     inner class HPViewHolder(private val binding: ListItemBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(hp: responseDataItem){
-            binding.nametext.text = hp.name
-            binding.actortext.text = hp.actor
-            binding.housetext.text = hp.house
+            binding.NmaeView.text = hp.name
+            binding.ActorView.text = hp.actor
+            binding.HouseView.text = hp.house
+            Glide.with(itemView)
+                .load(hp.image)
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .into(binding.profilePic)  // Replace 'binding.imageVie
+
+
+            binding.root.setOnClickListener {
+                onHPClicked(hp)
+            }
         }
 
 

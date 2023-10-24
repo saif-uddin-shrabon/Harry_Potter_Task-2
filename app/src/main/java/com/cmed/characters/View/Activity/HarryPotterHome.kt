@@ -6,22 +6,29 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+
 import androidx.fragment.app.viewModels
+
 import androidx.lifecycle.Observer
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.cmed.characters.R
+import com.cmed.characters.Services.Model.responseDataItem
 import com.cmed.characters.Utils.NetworkResult
 import com.cmed.characters.View.Adapter.HarryPotterAdapter
 import com.cmed.characters.ViewModel.HarrayPotterViewModel
 import com.cmed.characters.databinding.FragmentHarryPotterHomeBinding
+import com.google.gson.Gson
+
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class HarryPotterHome : Fragment() {
 
-   private var _binding: FragmentHarryPotterHomeBinding? = null
+    private var _binding: FragmentHarryPotterHomeBinding? = null
+
     private val binding get() = _binding!!
+
     private  val harrayPotterViewModel by viewModels<HarrayPotterViewModel> (  )
 
     private  lateinit var adapter: HarryPotterAdapter
@@ -30,20 +37,25 @@ class HarryPotterHome : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentHarryPotterHomeBinding.inflate(inflater,container, false)
+        _binding = FragmentHarryPotterHomeBinding.inflate(inflater, container, false)
         return binding.root
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
+        adapter = HarryPotterAdapter(this::onHPClicked)
         harrayPotterViewModel.getHPCharacter()
-//        binding.hpuserlist.layoutManager = StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL)
-//        binding.hpuserlist.adapter = adapter
-//
-//
-//        bindObservers()
+
+
+
+        binding.hpuserlist.layoutManager = StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL)
+        binding.hpuserlist.adapter = adapter
+
+
+        bindObservers()
     }
+
 
     private fun bindObservers() {
 
@@ -64,6 +76,18 @@ class HarryPotterHome : Fragment() {
 
         })
 
+    }
+
+    private fun onHPClicked(responseDataItem: responseDataItem){
+        val bundle = Bundle()
+        bundle.putString("HP", Gson().toJson(responseDataItem))
+        findNavController().navigate(R.id.action_charactersHome_to_harryPotterDetails, bundle)
+    }
+
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
 

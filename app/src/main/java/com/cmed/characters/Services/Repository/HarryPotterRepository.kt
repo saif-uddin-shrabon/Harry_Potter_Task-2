@@ -24,6 +24,7 @@ class HarryPotterRepository @Inject constructor(private val harryPotterApi: Harr
         try {
             val response = harryPotterApi.getHPCharacters()
                val rest = response.body()
+                println("checkresponse: "+rest.toString())
 
 
 
