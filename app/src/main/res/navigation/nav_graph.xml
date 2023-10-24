@@ -17,7 +17,7 @@
     </fragment>
     <fragment
         android:id="@+id/harryPotterDetails"
-       android:name="com.cmed.characters.HarryPotterDetails"
+       android:name="com.cmed.characters.View.Activity.HarryPotterDetails"
         android:label="fragment_harry_potter_details"
         tools:layout="@layout/fragment_harry_potter_details" >
         <action

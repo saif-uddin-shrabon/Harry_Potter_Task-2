@@ -34,7 +34,7 @@ class HarryPotterAdapter(private val onHPClicked: (responseDataItem) -> Unit) : 
             Glide.with(itemView)
                 .load(hp.image)
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .into(binding.profilePic)  // Replace 'binding.imageVie
+                .into(binding.profilePic)
 
 
             binding.root.setOnClickListener {
