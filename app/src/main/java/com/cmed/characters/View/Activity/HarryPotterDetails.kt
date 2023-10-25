@@ -94,7 +94,7 @@ class HarryPotterDetails : Fragment() {
                 val alternateNames = it?.alternate_names
 
                 if (alternateNames != null && alternateNames.isNotEmpty()) {
-                    binding?.altrrName?.text = alternateNames[0]
+                    binding?.altrrName?.text = alternateNames[0].toString()
                 } else {
                     binding?.altrrName?.text = ""
                 }

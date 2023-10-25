@@ -1,6 +1,6 @@
-package com.cmed.characters.Services.LocalRepository.DB
+package com.cmed.characters.Services.LocalRepo
 
-import androidx.paging.PagingSource
+
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy

@@ -2,7 +2,6 @@ package com.cmed.characters.Services.Paging
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.cmed.characters.Services.Model.responseData
 import com.cmed.characters.Services.Model.responseDataItem
 import com.cmed.characters.Services.api.HarryPotterApi
 

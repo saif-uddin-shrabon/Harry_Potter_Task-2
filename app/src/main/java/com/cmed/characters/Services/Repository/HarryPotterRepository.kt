@@ -4,13 +4,10 @@ import androidx.lifecycle.MutableLiveData
 import androidx.paging.ExperimentalPagingApi
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
-import androidx.paging.PagingSource
-import androidx.paging.RemoteMediator
 import androidx.paging.liveData
-import com.cmed.characters.Services.LocalRepository.DB.HPDatabase
+import com.cmed.characters.Services.LocalRepo.HPDatabase
 import com.cmed.characters.Services.Model.responseData
 import com.cmed.characters.Services.Paging.HPRemoteMediator
-import com.cmed.characters.Services.Paging.HPagingSource
 import com.cmed.characters.Services.api.HarryPotterApi
 import com.cmed.characters.Utils.NetworkResult
 import okio.IOException

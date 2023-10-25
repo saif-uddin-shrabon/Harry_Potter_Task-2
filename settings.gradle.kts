@@ -15,3 +15,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "Characters"
 include(":app")
+include(":mylibrary")

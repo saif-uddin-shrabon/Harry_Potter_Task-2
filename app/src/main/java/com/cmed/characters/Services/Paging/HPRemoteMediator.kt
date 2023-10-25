@@ -1,13 +1,11 @@
 package com.cmed.characters.Services.Paging
 
-import androidx.compose.runtime.key
 import androidx.paging.ExperimentalPagingApi
 import androidx.paging.LoadType
 import androidx.paging.PagingState
 import androidx.paging.RemoteMediator
 import androidx.room.withTransaction
-import com.cmed.characters.Services.LocalRepository.DB.HPDatabase
-import com.cmed.characters.Services.LocalRepository.DB.HpDao
+import com.cmed.characters.Services.LocalRepo.HPDatabase
 import com.cmed.characters.Services.Model.responseDataItem
 import com.cmed.characters.Services.Repository.HPRemoteKey
 import com.cmed.characters.Services.api.HarryPotterApi
