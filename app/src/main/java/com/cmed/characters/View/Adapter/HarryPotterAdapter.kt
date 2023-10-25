@@ -47,7 +47,7 @@ class HarryPotterAdapter(private val onHPClicked: (responseDataItem) -> Unit) : 
                 .into(binding.profilePic)
 
 
-        //    Picasso.get().load(hp.image).into(binding.profilePic)
+
 
 
             binding.root.setOnClickListener {

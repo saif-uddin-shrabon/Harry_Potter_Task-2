@@ -65,6 +65,7 @@ class HarryPotterHome : Fragment() {
 
     private fun bindObservers() {
        /*
+       // this part working without pagination
         harrayPotterViewModel.potterLiveData.observe(viewLifecycleOwner, Observer { result ->
             when(result){
                 is NetworkResult.Success -> {

@@ -88,15 +88,12 @@ class HarryPotterDetails : Fragment() {
 
                 binding?.textView3?.text = it?.name ?: ""
                 binding?.actorname?.text = it?.actor ?: ""
-//                    binding?.altrrName?.text = it?.alternate_names?.get(0) ?: ""
                 val alternateNames = it?.alternate_names
-
                 if (alternateNames != null && alternateNames.isNotEmpty()) {
                     binding?.altrrName?.text = alternateNames[0]
                 } else {
                     binding?.altrrName?.text = ""
                 }
-
                 binding?.gender?.text = it?.gender ?: ""
                 binding?.dob?.text = it?.dateOfBirth ?: ""
                 binding?.yob?.text = it?.yearOfBirth.toString() ?: ""
