@@ -12,6 +12,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import androidx.paging.ExperimentalPagingApi
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.cmed.characters.R
 import com.cmed.characters.Services.Model.responseDataItem
@@ -24,6 +25,7 @@ import com.google.gson.Gson
 
 import dagger.hilt.android.AndroidEntryPoint
 
+@ExperimentalPagingApi
 @AndroidEntryPoint
 class HarryPotterHome : Fragment() {
 

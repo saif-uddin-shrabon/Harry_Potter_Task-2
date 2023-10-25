@@ -13,6 +13,7 @@ import androidx.core.view.ViewCompat
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModel
 import androidx.navigation.fragment.findNavController
+import androidx.paging.ExperimentalPagingApi
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.cmed.characters.Services.Model.responseDataItem
@@ -20,6 +21,7 @@ import com.cmed.characters.ViewModel.HarrayPotterViewModel
 import com.google.gson.Gson
 import dagger.hilt.android.AndroidEntryPoint
 
+@ExperimentalPagingApi
 @AndroidEntryPoint
 class HarryPotterDetails : Fragment() {
    private var _binding: FragmentHarryPotterDetailsBinding? = null

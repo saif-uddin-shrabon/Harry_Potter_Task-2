@@ -1,11 +1,15 @@
 package com.cmed.characters.Services.Repository
 
 import androidx.lifecycle.MutableLiveData
+import androidx.paging.ExperimentalPagingApi
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingSource
+import androidx.paging.RemoteMediator
 import androidx.paging.liveData
+import com.cmed.characters.Services.LocalRepository.DB.HPDatabase
 import com.cmed.characters.Services.Model.responseData
+import com.cmed.characters.Services.Paging.HPRemoteMediator
 import com.cmed.characters.Services.Paging.HPagingSource
 import com.cmed.characters.Services.api.HarryPotterApi
 import com.cmed.characters.Utils.NetworkResult
@@ -14,8 +18,8 @@ import org.json.JSONObject
 import retrofit2.HttpException
 import java.util.concurrent.TimeoutException
 import javax.inject.Inject
-
-class HarryPotterRepository @Inject constructor(private val harryPotterApi: HarryPotterApi) {
+@ExperimentalPagingApi
+class HarryPotterRepository @Inject constructor(private val harryPotterApi: HarryPotterApi, private val hpDatabase: HPDatabase) {
 
     private val _potterLiveData  =  MutableLiveData<NetworkResult<responseData>>()
     val potterLiveData get() = _potterLiveData
@@ -51,7 +55,9 @@ class HarryPotterRepository @Inject constructor(private val harryPotterApi: Harr
     //paging
     fun getHPages() = Pager(
         config = PagingConfig(pageSize = 10, maxSize = 100),
-        pagingSourceFactory = {HPagingSource(harryPotterApi)}
+//        pagingSourceFactory = {HPagingSource(harryPotterApi)}
+        remoteMediator = HPRemoteMediator(harryPotterApi,hpDatabase),
+        pagingSourceFactory = {hpDatabase.responseDao().getHP()}
     ).liveData
 
 }

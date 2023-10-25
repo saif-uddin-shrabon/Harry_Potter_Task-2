@@ -2,12 +2,13 @@ package com.cmed.characters.ViewModel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.paging.ExperimentalPagingApi
 import androidx.paging.cachedIn
 import com.cmed.characters.Services.Repository.HarryPotterRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
-
+@ExperimentalPagingApi
 @HiltViewModel
 class HarrayPotterViewModel @Inject constructor (private val harryPotterRepository: HarryPotterRepository) : ViewModel() {
 

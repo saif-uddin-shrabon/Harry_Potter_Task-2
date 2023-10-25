@@ -103,6 +103,14 @@ dependencies {
     val paging_version = "3.2.1"
 
     implementation("androidx.paging:paging-runtime:$paging_version")
+
+    //room
+    val room_version = "2.6.0"
+    implementation("androidx.room:room-runtime:$room_version")
+    annotationProcessor("androidx.room:room-compiler:$room_version")
+    implementation("androidx.room:room-paging:$room_version")
+    implementation("androidx.room:room-ktx:$room_version")
+
 }
 kapt {
     correctErrorTypes = true
