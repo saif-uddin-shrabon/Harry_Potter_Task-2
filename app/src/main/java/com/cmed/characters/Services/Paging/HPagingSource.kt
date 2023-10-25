@@ -12,12 +12,12 @@ class HPagingSource(private val harryPotterApi: HarryPotterApi) : PagingSource<I
             val response = harryPotterApi.getHPCharacter(position)
 
 
-            if (response.isSuccessful) {
-                val data = response.body() ?: emptyList()
-                val nextKey = if (data.isEmpty()) null else position + 1
+            if (response.isEmpty()) {
+
+                val nextKey = if (response.isEmpty()) null else position + 1
 
                 LoadResult.Page(
-                    data = data,
+                    data = response,
                     prevKey = if (position == 1) null else position - 1,
                     nextKey = nextKey
                 )

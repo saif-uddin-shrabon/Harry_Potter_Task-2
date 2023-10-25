@@ -10,6 +10,6 @@ interface HarryPotterApi {
     suspend fun getHPCharacters() : Response<responseData>
 
     @GET("/api/characters")
-    suspend fun getHPCharacter(@Query("page") page : Int) : Response<responseData>
+    suspend fun getHPCharacter(@Query("page") page : Int) : responseData
 
 }

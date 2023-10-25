@@ -51,7 +51,9 @@ class HarryPotterRepository @Inject constructor(private val harryPotterApi: Harr
 
     //paging
     fun getHPages() = Pager(
-        config = PagingConfig(pageSize = 10, maxSize = 100),
+        config = PagingConfig(
+            pageSize = 10,
+            maxSize = 100),
 //        pagingSourceFactory = {HPagingSource(harryPotterApi)}
         remoteMediator = HPRemoteMediator(harryPotterApi,hpDatabase),
         pagingSourceFactory = {hpDatabase.responseDao().getHP()}

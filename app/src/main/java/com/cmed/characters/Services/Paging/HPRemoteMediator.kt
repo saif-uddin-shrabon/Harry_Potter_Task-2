@@ -11,7 +11,7 @@ import com.cmed.characters.Services.Repository.HPRemoteKey
 import com.cmed.characters.Services.api.HarryPotterApi
 
 
-@OptIn(ExperimentalPagingApi::class)
+@ExperimentalPagingApi
 class HPRemoteMediator(
     private val harryPotterApi: HarryPotterApi,
     private  val hpDatabase: HPDatabase
@@ -28,7 +28,7 @@ class HPRemoteMediator(
 
         //Fetch Quotes from API
         // Save these Quotes + RemoteKeys Data into DB
-    return  try{
+      try{
 
          // Logic for states - Refresh, Prepend, apend
             val currentPage = when(loadType){
@@ -57,8 +57,10 @@ class HPRemoteMediator(
 
 
         val response = harryPotterApi.getHPCharacter(currentPage)
-        val data = response.body() ?: emptyList()
-        val endOfPaginationReached = data.isEmpty()
+
+//        val data = response.body() ?: emptyList()
+     //   println("chek_api_data"+data.toString())
+        val endOfPaginationReached = response.size == currentPage
 
 
             val prevPage = if(currentPage == 1) null else currentPage -1
@@ -71,8 +73,9 @@ class HPRemoteMediator(
                      hpRemoteKeyDao.deleteAllRemoteKey()
                  }
 
-               hpDao.addHP(data)
-                 val keys = data.map {
+               hpDao.addHP(response)
+
+                 val keys = response.map {
                     HPRemoteKey(
                         id = it.id,
                         prevPage = prevPage,
@@ -81,11 +84,12 @@ class HPRemoteMediator(
 
 
                  }
-                 hpRemoteKeyDao.addAllRemoteKeys(keys)
+               //  println("DataInserted"+ data.toString())
+               hpRemoteKeyDao.addAllRemoteKeys(keys)
              }
-            MediatorResult.Success(endOfPaginationReached)
+           return MediatorResult.Success(endOfPaginationReached)
         }catch (e: Exception){
-             MediatorResult.Error(e)
+           return  MediatorResult.Error(e)
         }
 
 
